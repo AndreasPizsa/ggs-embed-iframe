@@ -1,0 +1,39 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style type="text/css">
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    iframe {
+      border: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    (function parseWindowLocationQuery(w){
+      var d=decodeURIComponent,
+          q=w.location.query=w.location.query||{},
+          pairs=w.location.search.substr(1).split('&'),
+          i;
+      while(i=pairs.pop()) {
+        var keyValue=i.match(/([^=]*)=?(.*)/)
+        if(keyValue) q[d(keyValue[1]).toLowerCase()]=d(keyValue[2]);
+      }
+    })(window);
+
+    const iframe = document.createElement('iframe')
+    iframe.setAttribute('allowfullscreen', 'true')
+    iframe.width = window.location.query.width || 800
+    iframe.height = window.location.query.height || 600
+    iframe.src = window.location.query.src || 'https://sfgame.de/'
+
+    document.body.insertBefore(iframe, null)
+  </script>
+</body>
